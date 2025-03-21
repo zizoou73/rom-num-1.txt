@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>مسابقة الرياضيات</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .evaluation {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #d35400;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="quiz-container">
+        <div class="header">مسابقة الرياضيات</div>
+        <div class="question-counter" id="question-counter">السؤال 1 من 10</div>
+        <div class="question" id="question"></div>
+        <ul class="options" id="options"></ul>
+        <div class="evaluation" id="evaluation"></div>
+        <div class="button-container">
+            <button onclick="restartQuiz()">إعادة المسابقة</button>
+        </div>
+    </div>
+    <script>
+        function loadResult() {
+    const score = localStorage.getItem('quizScore') || 0;
+    const evaluation = localStorage.getItem('quizEvaluation') || "حاول مرة أخرى!";
+    document.getElementById('question-counter').style.display = 'none';
+    document.getElementById('question').innerHTML = `لقد حصلت على ${score} من 10`;
+    document.getElementById('options').style.display = 'none';
+    document.getElementById('evaluation').textContent = evaluation;
+}
+
+        function restartQuiz() {
+            localStorage.clear();
+            window.location.href = 'المسابقة.html';
+        }
+        
+        loadResult();
+    </script>
+</body>
+</html>
